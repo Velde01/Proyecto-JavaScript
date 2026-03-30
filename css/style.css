@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color:  white;
+    padding: 20px;
+    color: #550302;
+}
+/* TITULOS */
+h1{
+    text-align: center;
+}
+
+/* GRID DE AUTOS */
+#lista-autos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+.card {
+    background: #fcfbd6;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* IMAGEN */
+.card img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* BOTON */
+button {
+    background-color: #550302;
+    color: #fcfbd6;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: black;
+}
+
+/* CARRITO */
+#carrito {
+    background: #fcfbd6;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

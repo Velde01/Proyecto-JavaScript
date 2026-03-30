@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador FindCars</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Simulador de búsqueda y compra de auto</h1>
-    <p>
-        Este simulador permite al usuario elegir un vehículo disponible para alquilar y calcular el costo total según la cantidad de días seleccionados. El programa utiliza JavaScript para gestionar la interacción con el usuario mediante prompt, confirm y alert, además de aplicar funciones, ciclos y condicionales para procesar los datos ingresados
-    </p>
-    <p>
-        El programa utiliza JavaScript para manejar la interacción mediante prompt, confirm y alert, además de aplicar funciones, condicionales y ciclos para procesar la información ingresada por el usuario.
-    </p>
+    <h1>FindCars</h1>
+    <h2>Autos disponibles</h2>
+    <div id="lista-autos"></div>
+    <h2>Carrito de Compras</h2>
+    <ul id="carrito"></ul>
+    <h3 id="total">Total: $0</h3>
+    <button id="vaciarCarrito">Vaciar carrito</button>
+
     <script src="js/script.js"></script>
 </body>
 </html>

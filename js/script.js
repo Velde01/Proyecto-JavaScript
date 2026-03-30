@@ -1,46 +1,100 @@
-// ARRAYS DE AUTOS Y PRECIOS
-const autos = ["Toyota Corolla", "Chevrolet Onix", "Ford Ranger"];
-const precios = [20000, 15000, 35000];
+// ARRAY DE OBJETOS (mejor que 2 arrays separados)
+const autos = [
+    {
+        id: 0,
+        nombre: "Toyota Corolla",
+        precio: 20000,
+        imagen: "img/toyota.jpg"
+    },
+    {
+        id: 1,
+        nombre: "Chevrolet Onix",
+        precio: 15000,
+        imagen: "img/chevrolet.jpg"
+    },
+    {
+        id: 2,
+        nombre: "Ford Ranger",
+        precio: 35000,
+        imagen: "img/ford.jpg"
+    }
+];
 
-let totalCompra = 0;
+// CARRITO
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// FUNCION 1: MOSTRAR AUTOS
+// ELEMENTOS DEL DOM
+const contenedorAutos = document.getElementById("lista-autos");
+const listaCarrito = document.getElementById("carrito");
+const totalHTML = document.getElementById("total");
+const btnVaciar = document.getElementById("vaciarCarrito");
+
+
+// FUNCION MOSTRAR AUTOS
 function mostrarAutos() {
-    console.log("Autos disponibles en FindCars:");
-    for (let i = 0; i < autos.length; i++) {
-        console.log(i + " - " + autos[i] + " - $" + precios[i]);
-    }
+
+    contenedorAutos.innerHTML = "";
+
+    autos.forEach(auto => {
+
+        const div = document.createElement("div");
+        div.classList.add("card");
+
+        div.innerHTML = `
+            <img src="${auto.imagen}" alt="${auto.nombre}">
+            <h3>${auto.nombre}</h3>
+            <p>$${auto.precio}</p>
+            <button onclick="agregarAlCarrito(${auto.id})">Comprar</button>
+        `;
+
+        contenedorAutos.appendChild(div);
+    });
 }
 
-// FUNCION 2: COMPRAR AUTO
-function comprarAuto() {
-    let opcion = parseInt(prompt(
-        "Selecciona el auto que quieres comprar:\n" +
-        "0 - Toyota Corolla ($20000)\n" +
-        "1 - Chevrolet Onix ($15000)\n" +
-        "2 - Ford Ranger ($35000)"
-    ));
-    if (opcion >= 0 && opcion < autos.length) {
-        totalCompra = totalCompra + precios[opcion];
-        alert("Agregaste " + autos[opcion] + " al carrito");
-    } else {
-        alert("Opción inválida");
-    }
+
+// FUNCION AGREGAR AL CARRITO
+function agregarAlCarrito(id) {
+
+    const auto = autos.find(a => a.id === id);
+    carrito.push(auto);
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    mostrarCarrito();
 }
 
-// FUNCION 3: MOSTRAR TOTAL
-function mostrarTotal() {
-    alert("El total de tu compra es: $" + totalCompra);
-    console.log("Total de la compra:", totalCompra);
+
+// FUNCION MOSTRAR CARRITO
+function mostrarCarrito() {
+
+    listaCarrito.innerHTML = "";
+
+    let total = 0;
+
+    carrito.forEach(auto => {
+
+        const li = document.createElement("li");
+        li.textContent = `${auto.nombre} - $${auto.precio}`;
+
+        listaCarrito.appendChild(li);
+
+        total += auto.precio;
+    });
+
+    totalHTML.textContent = "Total: $" + total;
 }
 
-// PROGRAMA PRINCIPAL
-alert("Bienvenido a FindCars 🚗");
-let continuar = true;
-while (continuar) {
-    mostrarAutos();
-    comprarAuto();
-    continuar = confirm("¿Quieres comprar otro auto?");
-}
 
-mostrarTotal();
+// EVENTO VACIAR CARRITO
+btnVaciar.addEventListener("click", () => {
+
+    carrito = [];
+    localStorage.removeItem("carrito");
+
+    mostrarCarrito();
+});
+
+
+// INICIO
+mostrarAutos();
+mostrarCarrito();
