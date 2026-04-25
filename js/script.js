@@ -103,7 +103,15 @@ btnVaciar.addEventListener("click", () => {
     localStorage.removeItem("carrito");
 
     mostrarCarrito();
+
+    Toastify({
+        text: "Carrito vaciado",
+        duration: 2000,
+        style: { background: "#550302" }
+    }).showToast();
 });
+
+
 
 
 // INICIO

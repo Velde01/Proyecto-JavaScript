@@ -1,21 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador FindCars</title>
+    <title>FindCars - Marketplace</title>
+    <!-- Modern Typeface -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>FindCars</h1>
-    <h2>Autos disponibles</h2>
-    <div id="lista-autos"></div>
-    <h2>Carrito de Compras</h2>
-    <ul id="carrito"></ul>
-    <h3 id="total">Total: $0</h3>
-    <button id="vaciarCarrito">Vaciar carrito</button>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <header class="app-header">
+        <div class="header-container">
+            <h1><i class="fa-solid fa-car-side"></i> FindCars</h1>
+            <div class="header-search">
+                <input type="text" placeholder="Buscar marcas y modelos...">
+                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="header-user">
+                <i class="fa-solid fa-user"></i> Mi Perfil
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        
+        <main class="products-section">
+            <h2 class="section-title">Autos disponibles</h2>
+            <!-- REQUIRED ID: No alterado -->
+            <div id="lista-autos"></div>
+        </main>
+
+        <aside class="cart-sidebar">
+            <div class="cart-container">
+                <h2 class="cart-title"><i class="fa-solid fa-cart-shopping"></i> Tu Carrito</h2>
+                <!-- REQUIRED ID: No alterado -->
+                <ul id="carrito"></ul>
+                <!-- REQUIRED ID: No alterado -->
+                <h3 id="total" class="cart-total">Total: $0</h3>
+                <!-- REQUIRED ID: No alterado -->
+                <button id="vaciarCarrito" class="btn-vaciar">Vaciar carrito</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- REQUIRED SCRIPT TAGS: No eliminadas -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="js/script.js"></script>
 </body>
