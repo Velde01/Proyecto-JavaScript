@@ -1,25 +1,3 @@
-// ARRAY DE OBJETOS (mejor que 2 arrays separados)
-const autos = [
-    {
-        id: 0,
-        nombre: "Toyota Corolla",
-        precio: 20000,
-        imagen: "img/toyota.jpg"
-    },
-    {
-        id: 1,
-        nombre: "Chevrolet Onix",
-        precio: 15000,
-        imagen: "img/chevrolet.jpg"
-    },
-    {
-        id: 2,
-        nombre: "Ford Ranger",
-        precio: 35000,
-        imagen: "img/ford.jpg"
-    }
-];
-
 // CARRITO
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -40,13 +18,23 @@ function mostrarAutos() {
         const div = document.createElement("div");
         div.classList.add("card");
 
-        div.innerHTML = `
-            <img src="${auto.imagen}" alt="${auto.nombre}">
-            <h3>${auto.nombre}</h3>
-            <p>$${auto.precio}</p>
-            <button onclick="agregarAlCarrito(${auto.id})">Comprar</button>
-        `;
+        const img = document.createElement("img");
+        img.src = auto.imagen;
 
+        const nombre = document.createElement("h3");
+        nombre.textContent = auto.nombre;
+
+        const precio = document.createElement("p");
+        precio.textContent = "$" + auto.precio;
+
+        const boton = document.createElement("button");
+        boton.textContent = "Comprar";
+
+        boton.addEventListener("click", () => {
+            agregarAlCarrito(auto.id);
+        });
+
+        div.append(img, nombre, precio, boton);
         contenedorAutos.appendChild(div);
     });
 }
@@ -61,6 +49,16 @@ function agregarAlCarrito(id) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     mostrarCarrito();
+
+    Toastify({
+        text: "Auto agregado al carrito",
+        duration: 2000,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: "#550302",
+        }
+    }).showToast();
 }
 
 
@@ -68,6 +66,12 @@ function agregarAlCarrito(id) {
 function mostrarCarrito() {
 
     listaCarrito.innerHTML = "";
+
+    if (carrito.length === 0) {
+    listaCarrito.innerHTML = "<p>El carrito está vacío</p>";
+    totalHTML.textContent = "Total: $0";
+        return;
+    }
 
     let total = 0;
 
@@ -84,6 +88,13 @@ function mostrarCarrito() {
     totalHTML.textContent = "Total: $" + total;
 }
 
+let autos = [];
+
+async function cargarAutos() {
+    const response = await fetch("data/autos.json");
+    autos = await response.json();
+    mostrarAutos();
+}
 
 // EVENTO VACIAR CARRITO
 btnVaciar.addEventListener("click", () => {
@@ -96,5 +107,5 @@ btnVaciar.addEventListener("click", () => {
 
 
 // INICIO
-mostrarAutos();
+cargarAutos();
 mostrarCarrito();

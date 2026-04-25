@@ -1,0 +1,20 @@
+[
+    {
+        "id": 0,
+        "nombre": "Toyota Corolla",
+        "precio": 20000,
+        "imagen": "img/toyota.jpg"
+    },
+    {
+        "id": 1,
+        "nombre": "Chevrolet Onix",
+        "precio": 15000,
+        "imagen": "img/chevrolet.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "Ford Ranger",
+        "precio": 35000,
+        "imagen": "img/ford.jpg"
+    }
+]
